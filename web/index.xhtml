@@ -1,0 +1,90 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <link href="resources/css/customCss.css" rel="stylesheet" type="text/css"/>
+        <h:outputStylesheet name="grid/grid.css" library="primefaces" />
+    </h:head>
+    <h:body>
+        <div > 
+            <div class="ui-g">
+                <div class="ui-g-1"></div>
+                <div class="ui-g-3"><img src="resources/images/logosep.png"  alt=""/></div>
+                <div class="ui-g-4"><center><p id="upTitulo">Unidad Politécnica de Gestión con Perspectiva de Género</p></center> </div>
+                <div class="ui-g-3"><img src="resources//images/logoIPN.png"  alt=""/></div>
+                <div class="ui-g-1"></div>
+            </div>
+
+            <div class="ui-g" style="padding-bottom:0px; ">
+                <div class="ui-g-12" id="navMenu">
+                    <img src="resources/images/fbw.png"  alt=""/>
+                    <img src="resources/images/twitterw.png"  alt=""/>
+                    <img src="resources/images/youtubewpng.png"  alt=""/>
+                </div>
+            </div>
+
+            <div class="ui-g" >
+                <div class="ui-g-2"></div>
+                <div class="ui-g-8" style="padding: 0px;">
+                    <center><p id="upTitulo2">Sistema de Indicadores de Institucionalización de la Perspectiva de Genero</p></center> 
+                </div>
+                <div class="ui-g-2"></div>
+            </div>
+            <div class="ui-g">
+                <div class="ui-g-2"></div>
+                <div class="ui-g-8" style="padding: 0px;" id="login">
+                    <div class="ui-g-6"><img src="resources/images/upLogo.png" id="upLogo" alt=""/></div>
+                    <div class="ui-g-6">
+                        <h:form>
+                            <h:panelGrid columns="2" cellpadding="8">
+                                <h:outputText value="RFC/Homoclave: "  />
+                                <p:inputText value="" required="true"/>
+                                <h:outputText value="Contraseña: " />
+                                <p:password  value="" required="true"/>
+                                <h:outputText value="" />
+                                <p:commandButton  value="Entrar" />
+
+
+                            </h:panelGrid>
+                            <p:messages id="messages" showDetail="true" autoUpdate="true" closable="true"/>
+                        </h:form>
+                        <br></br>
+                        <p:link  value="¿Has olvidado tu usuario o contraseña?">
+
+                        </p:link>
+                    </div>
+                </div>
+
+            </div>
+            <br></br>
+            <div class="ui-g" >
+                <div class="ui-g-8"></div>
+                <div class="ui-g-2">
+                    <center>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;
+                        <img id="siipgLogo" src="resources/images/SIIPG.png"  alt=""/></center>
+                </div>
+                <div class="ui-g-2"></div>
+            </div>
+
+
+            <div class="ui-g" id="upFooter">
+
+                <div class="ui-g-2"></div>
+                <div class="ui-g-8">
+                    <br></br>
+                    <center><strong>INSTITUTO POLITÉCNICO NACIONAL</strong></center>
+                    <center>Instituto Politécnico Nacional (IPN), Av. Luis Enrique Erro S/N, Unidad Profesional Adolfo López Mateos, 
+                        Zacatenco, Delegación Gustavo A. Madero, C.P. 07738, Ciudad de México; México 2009-2013.</center>  
+                    <p></p>
+                </div>
+                <div class="ui-g-2"></div>
+
+            </div>
+        </div>
+
+    </h:body>
+</html>
+

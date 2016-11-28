@@ -1,0 +1,128 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <body>
+
+        <ui:composition template="./../../WEB-INF/siipgTemplate.xhtml">
+
+
+            <ui:define name="content">
+
+                <div class="ui-g" style="padding-top:20px; ">
+                    <div class="ui-g-1"></div>
+                    <div class="ui-g-10" style="border:2px solid black; border-radius: 5px; background-color:rgba(0,0,255,.05);">
+                        <div style="color: #045491; font-size: 120%;font-weight: bold;"><center>Usuarios del Sistema</center><hr></hr></div> 
+                        <div class="ui-g" >
+
+                            <div class="ui-g-3" >
+                                <h:form>
+                                    <h:panelGrid columns="2">
+                                        <p:button value="Buscar" />
+                                        <p:inputText />
+                                    </h:panelGrid>
+                                </h:form>
+                            </div>    
+                            <div class="ui-g-7"></div>    
+                            <div class="ui-g-2">
+                                <h:form>
+                                    &nbsp; &nbsp; &nbsp; 
+                                    <h:commandLink >
+                                        <h:graphicImage library="images" name="pdf.png" />
+                                    </h:commandLink>&nbsp; &nbsp; 
+                                    <h:commandLink action="#{userController.prepareCreate()}">
+                                        <h:graphicImage library="images" name="add.png" />
+                                    </h:commandLink>
+                                </h:form>
+                            </div>                            
+                        </div>
+                        <h:form id="showUsersForm">
+
+                            <p:dataTable id="usersTable" value="#{userController.items}" var="user" style="text-align: center; border-collapse: collapse; margin-bottom: 20px;"
+                                         paginator="true" rows="20"  paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                         rowsPerPageTemplate="10,20,30" currentPageReportTemplate="Página ({currentPage} de {totalPages})">
+                                <p:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Nombre"/>
+                                    </f:facet>
+                                    <h:outputText value="#{user.nombre } #{user.apellidoPaterno } #{user.apellidoMaterno }"/>
+                                </p:column>
+
+                                <p:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="RFC"/>
+                                    </f:facet>
+                                    <h:outputText value="#{user.rfc}"/>
+                                </p:column>
+                                <p:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Privilegio"/>
+                                    </f:facet>
+                                    <h:outputText value="#{user.rol.nombre}"/>
+                                </p:column>
+
+                                <p:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Estatus"/>
+                                    </f:facet>
+                                    <h:outputLabel value="#{user.status==0? 'No vigente' : 'Vigente'}"/>
+                                </p:column>
+
+                                <p:column headerText="Eliminar" style="width: 45px;"> 
+                                    <p:commandLink type="button" oncomplete="PF('dlgEliminar').show();" >
+                                        <f:setPropertyActionListener target="#{userController.current}" value="#{user}"/>
+                                        <h:graphicImage library="images" name="delete.png" />
+                                    </p:commandLink>
+                                </p:column>  
+                                <p:column headerText="Editar" style="width: 45px;">
+                                    <h:commandLink  action="#{userController.prepareEdit(user)}">
+                                        <h:graphicImage library="images" name="note.png" />
+                                    </h:commandLink>
+                                </p:column> 
+                                <p:column headerText="Detalle" style="width: 45px;">
+                                    <p:commandLink type="button" oncomplete="PF('dlg2').show();" >
+                                        <h:graphicImage library="images" name="preview.png" />
+                                    </p:commandLink>
+                                </p:column> 
+
+                            </p:dataTable>
+
+                        </h:form>
+
+
+                    </div>
+                    <div class="ui-g-1"></div>
+
+                </div>
+                <h:form>
+                    <p:dialog id="dlg2" header="Confirmar Acción" widgetVar="dlgEliminar" modal="true" 
+                              closeOnEscape="true"
+                              resizable="false" 
+                              showEffect="explode"
+                              hideEffect="explode">
+                        <h:outputText value="Desea eliminar este registro?  "/>
+                        <br></br>
+                        <br></br>
+                        <center>
+                            <p:commandButton value="Si" 
+                                             actionListener="#{userController.deleteItem()}"
+                                             update="showUsersForm:usersTable"
+                                             oncomplete="PF('dlgEliminar').hide();"
+                                             />
+                            &nbsp; 
+                            <p:commandButton value="No"
+                                             onclick="PF('dlgEliminar').hide();"/>
+                        </center>
+                    </p:dialog>
+                </h:form>
+            </ui:define>
+
+
+
+        </ui:composition>
+
+    </body>
+</html>
