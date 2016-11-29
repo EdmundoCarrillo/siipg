@@ -71,20 +71,22 @@
                                     <h:outputLabel value="#{user.status==0? 'No vigente' : 'Vigente'}"/>
                                 </p:column>
 
-                                <p:column headerText="Eliminar" style="width: 45px;"> 
+                                <p:column headerText="Eliminar" style="width: 65px;"> 
                                     <p:commandLink type="button" oncomplete="PF('dlgEliminar').show();" >
                                         <f:setPropertyActionListener target="#{userController.current}" value="#{user}"/>
                                         <h:graphicImage library="images" name="delete.png" />
                                     </p:commandLink>
                                 </p:column>  
-                                <p:column headerText="Editar" style="width: 45px;">
-                                    <h:commandLink  action="#{userController.prepareEdit(user)}">
+                                <p:column headerText="Editar" style="width: 50px;">
+                                    <p:commandLink type="button" action="#{userController.prepareEdit2()}" update="detalleForm" >
                                         <h:graphicImage library="images" name="note.png" />
-                                    </h:commandLink>
+                                        <f:setPropertyActionListener target="#{userController.current}" value="#{user}"/>
+                                    </p:commandLink>
                                 </p:column> 
-                                <p:column headerText="Detalle" style="width: 45px;">
-                                    <p:commandLink type="button" oncomplete="PF('dlg2').show();" >
+                                <p:column headerText="Detalle" style="width: 50px;">
+                                    <p:commandLink type="button" oncomplete="PF('dlgDetalles').show();" update="detalleForm">
                                         <h:graphicImage library="images" name="preview.png" />
+                                        <f:setPropertyActionListener target="#{userController.current}" value="#{user}"/>
                                     </p:commandLink>
                                 </p:column> 
 
@@ -97,6 +99,7 @@
                     <div class="ui-g-1"></div>
 
                 </div>
+                <!-- Dialogo para confirmar la acción de eliminar un registro. -->
                 <h:form>
                     <p:dialog id="dlg2" header="Confirmar Acción" widgetVar="dlgEliminar" modal="true" 
                               closeOnEscape="true"
@@ -116,6 +119,61 @@
                             <p:commandButton value="No"
                                              onclick="PF('dlgEliminar').hide();"/>
                         </center>
+                    </p:dialog>
+                </h:form>
+                <!-- Dialogo para mostrar el resumen detallado de un usuario. -->
+                <h:form id="detalleForm">
+                    <p:dialog id="dlgDetalle" header="Información General" widgetVar="dlgDetalles" modal="true" 
+                              closeOnEscape="true"
+                              resizable="false" 
+                              showEffect="explode"
+                              hideEffect="explode">
+                        <h:outputText value="Desea eliminar este registro?  "/>
+                        <br></br>
+                        <br></br>
+                        <h:panelGrid columns="2" cellpadding="5">
+
+                            <h:outputText value="Nombre:" style=" color: red; " />
+                            <h:outputText value="#{userController.current.nombre}"  />                                    
+
+                            <h:outputText value="Apellido Paterno:"   style="color: red;" />
+                            <h:outputText value="#{userController.current.apellidoPaterno}"  /> 
+
+                            <h:outputText value="Apellido Materno:"  style=" color: red;" />
+                            <h:outputText value="#{userController.current.apellidoMaterno}"/>
+
+                            <h:outputText value="RFC/Homoclave: "  style=" color: red;" />
+                            <h:outputText value="#{userController.current.rfc}"  />
+
+                            <h:outputText value="Email:"  style="color: red;" />
+                            <h:outputText value="#{userController.current.email}" />
+
+                            <h:outputText value="Telefonos:"  style=" color: red;" />
+                            <h:outputText  value="#{userController.current.telefonos}"  />             
+
+                            <h:outputText value="No. Empleado:"  style=" color: red;" />
+                            <h:outputText value="#{userController.current.numeroEmpleado}"   />
+
+
+                            <h:outputText value="Rol:"  style=" color: red;"  />
+                            <h:outputText value="#{userController.selectedRol}"  />
+
+                            <h:outputText value="Estatus:"  style=" color: red;" />
+                            <h:outputText value="#{userController.current.status}"   />
+
+
+                            <h:outputText value="Area"  style=" color: red;" />
+                            <h:outputText value="Area Central"   />
+
+                            <h:outputText value="Unidad Academica:"  style="color: red;" />
+                            <h:outputText value="#{userController.selectedUnidad}"   />
+
+                        </h:panelGrid>
+                        <h:panelGrid columns="2" cellpadding="8" >
+
+
+                            <p:commandButton value="Salir" onclick="PF('dlgDetalles').hide();"/>            
+                        </h:panelGrid>
                     </p:dialog>
                 </h:form>
             </ui:define>

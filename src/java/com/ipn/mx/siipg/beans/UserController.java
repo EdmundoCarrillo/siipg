@@ -26,6 +26,9 @@ public class UserController implements Serializable {
     private String selectedRol;
     private String selectedUnidad;
 
+    public UserController() {
+    }
+
     public Usuario getCurrent() {
         return current;
     }
@@ -50,6 +53,11 @@ public class UserController implements Serializable {
 
     public String prepareEdit(Usuario user) {
         current = user;
+        return "Edit";
+    }
+
+    public String prepareEdit2() {
+
         return "Edit";
     }
 
