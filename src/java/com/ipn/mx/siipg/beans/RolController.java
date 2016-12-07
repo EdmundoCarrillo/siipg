@@ -24,6 +24,7 @@ import javax.faces.convert.FacesConverter;
 public class RolController implements Serializable {
 
     private Rol current;
+    //Lista de roles
     private List<Rol> items;
 
     public Rol getCurrent() {
