@@ -16,6 +16,7 @@ body, html {
 
 div#navMenu{
     background-color: rgba(0,0,0,.80);
+    height: 50px;
 }
 div#upLogo img{
     width: 90px;
@@ -39,12 +40,12 @@ p#upTitulo3{
 }
 
 div#upFooter{    
-    bottom:0%;
+  
     background-color: rgba(0,0,0,.80);
-    width: 100%;
-    height: 35%;
     color: white;
     font-size: 90%;
+    position: absolute;
+    bottom:0%;
 }
 #upLogo{
     width: 80%;

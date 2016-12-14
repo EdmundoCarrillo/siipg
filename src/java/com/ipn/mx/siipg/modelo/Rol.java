@@ -1,8 +1,7 @@
 package com.ipn.mx.siipg.modelo;
-// Generated 27/11/2016 04:37:03 AM by Hibernate Tools 4.3.1
+// Generated 12/12/2016 01:27:14 AM by Hibernate Tools 4.3.1
 
 
-import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -13,23 +12,21 @@ public class Rol  implements java.io.Serializable {
 
 
      private Integer id;
-     private String nombre;
-     private Date createdAt;
-     private Date updatedAt;
+     private String rol;
      private Set usuarios = new HashSet(0);
+     private Set menus = new HashSet(0);
 
     public Rol() {
     }
 
 	
-    public Rol(String nombre) {
-        this.nombre = nombre;
+    public Rol(String rol) {
+        this.rol = rol;
     }
-    public Rol(String nombre, Date createdAt, Date updatedAt, Set usuarios) {
-       this.nombre = nombre;
-       this.createdAt = createdAt;
-       this.updatedAt = updatedAt;
+    public Rol(String rol, Set usuarios, Set menus) {
+       this.rol = rol;
        this.usuarios = usuarios;
+       this.menus = menus;
     }
    
     public Integer getId() {
@@ -39,26 +36,12 @@ public class Rol  implements java.io.Serializable {
     public void setId(Integer id) {
         this.id = id;
     }
-    public String getNombre() {
-        return this.nombre;
+    public String getRol() {
+        return this.rol;
     }
     
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-    public Date getCreatedAt() {
-        return this.createdAt;
-    }
-    
-    public void setCreatedAt(Date createdAt) {
-        this.createdAt = createdAt;
-    }
-    public Date getUpdatedAt() {
-        return this.updatedAt;
-    }
-    
-    public void setUpdatedAt(Date updatedAt) {
-        this.updatedAt = updatedAt;
+    public void setRol(String rol) {
+        this.rol = rol;
     }
     public Set getUsuarios() {
         return this.usuarios;
@@ -66,6 +49,13 @@ public class Rol  implements java.io.Serializable {
     
     public void setUsuarios(Set usuarios) {
         this.usuarios = usuarios;
+    }
+    public Set getMenus() {
+        return this.menus;
+    }
+    
+    public void setMenus(Set menus) {
+        this.menus = menus;
     }
 
 

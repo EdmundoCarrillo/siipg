@@ -5,23 +5,23 @@
  */
 package com.ipn.mx.siipg.impl;
 
-import com.ipn.mx.siipg.dao.UnidadAcademicaDao;
-import com.ipn.mx.siipg.modelo.Unidadacademica;
+import com.ipn.mx.siipg.dao.MenuDao;
+import com.ipn.mx.siipg.modelo.Menu;
 import java.util.List;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
-public class UnidadAcademicaDaoImpl implements UnidadAcademicaDao {
+public class MenuDaoImpl implements MenuDao {
 
     @Override
-    public List<Unidadacademica> loadUnidad() {
+    public List<Menu> loadMenus() {
         Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction tx = session.getTransaction();
-        List usuarioList = null;
+        List rolList = null;
         try {
             tx.begin();
-            usuarioList = session.createQuery("from Unidadacademica").list();
+            rolList = session.createQuery("from Menu").list();
             tx.commit();
         } catch (HibernateException ex) {
             if (tx != null) {
@@ -31,22 +31,30 @@ public class UnidadAcademicaDaoImpl implements UnidadAcademicaDao {
         } finally {
             session.close();
         }
-        return usuarioList;
+        return rolList;
     }
 
     @Override
-    public void newUnidad(Unidadacademica unidad) {
+    public void newMenu(Menu menu) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public void updateUnidad(Unidadacademica unidad) {
+    public void updateMenu(Menu menu) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public void deleteUnidad(Unidadacademica unidad) {
+    public void deleteMenu(Menu menu) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
+    public static void main(String[] args) {
+        MenuDao menuDao = new MenuDaoImpl();
+        List<Menu> menuList = menuDao.loadMenus();
+
+        for (Menu menu : menuList) {
+            System.out.println(menu.getIcon());
+        }
+    }
 }

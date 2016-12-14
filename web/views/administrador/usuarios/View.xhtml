@@ -1,0 +1,59 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+
+    </h:head>
+    <h:body>
+        <h:form id="detalleForm">
+
+            <p:dialog  widgetVar="viewUser" modal="true"  
+                       closeOnEscape="true"
+                       resizable="false" 
+                       showEffect="explode"
+                       hideEffect="explode">
+                <h:panelGrid columns="2" cellpadding="5">
+
+                    <h:outputText value="Nombre:" style=" color: red; " />
+                    <h:outputText value="#{userController.current.nombre}"  />                                    
+
+                    <h:outputText value="Apellido Paterno:"   style="color: red;" />
+                    <h:outputText value="#{userController.current.apellidoPaterno}"  /> 
+
+                    <h:outputText value="Apellido Materno:"  style=" color: red;" />
+                    <h:outputText value="#{userController.current.apellidoMaterno}"/>
+
+                    <h:outputText value="RFC/Homoclave: "  style=" color: red;" />
+                    <h:outputText value="#{userController.current.rfc}"  />
+
+                    <h:outputText value="Email:"  style="color: red;" />
+                    <h:outputText value="#{userController.current.email}" />
+
+                    <h:outputText value="Telefonos:"  style=" color: red;" />
+                    <h:outputText  value="#{userController.current.telefonos}"  />             
+
+                    <h:outputText value="No. Empleado:"  style=" color: red;" />
+                    <h:outputText value="#{userController.current.numeroEmpleado}"   />
+
+
+                    <h:outputText value="Rol:"  style=" color: red;"  />
+                    <h:outputText value="#{userController.selectedRol}"  />
+
+                    <h:outputText value="Estatus:"  style=" color: red;" />
+                    <h:outputText value="#{userController.current.status}"   />
+
+
+                    <h:outputText value="Area"  style=" color: red;" />
+                    <h:outputText value="Area Central"   />
+
+                    <h:outputText value="Unidad Academica:"  style="color: red;" />
+                    <h:outputText value="#{userController.selectedUnidad}"   />
+
+                </h:panelGrid>
+            </p:dialog>
+
+        </h:form>
+    </h:body>
+</html>

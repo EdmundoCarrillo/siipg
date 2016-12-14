@@ -9,7 +9,7 @@ import com.ipn.mx.siipg.dao.UsuarioDao;
 import com.ipn.mx.siipg.dao.util.JsfUtil;
 import com.ipn.mx.siipg.impl.UsuarioDaoImpl;
 import com.ipn.mx.siipg.modelo.Rol;
-import com.ipn.mx.siipg.modelo.Unidadacademica;
+import com.ipn.mx.siipg.modelo.Unidadresponsable;
 import com.ipn.mx.siipg.modelo.Usuario;
 import java.io.Serializable;
 import java.util.List;
@@ -23,8 +23,17 @@ public class UserController implements Serializable {
 
     private Usuario current;
     private List<Usuario> items;
+    private Usuario selected;
     private String selectedRol;
     private String selectedUnidad;
+
+    public Usuario getSelected() {
+        return selected;
+    }
+
+    public void setSelected(Usuario selected) {
+        this.selected = selected;
+    }
 
     public UserController() {
     }
@@ -63,22 +72,22 @@ public class UserController implements Serializable {
 
     public void createItem() {
         UsuarioDao usuarioDao = new UsuarioDaoImpl();
-        Unidadacademica unidad = new Unidadacademica();
+        Unidadresponsable unidad = new Unidadresponsable();
         Rol rol = new Rol();
         unidad.setId(Integer.valueOf(selectedUnidad));
         rol.setId(Integer.valueOf(selectedRol));
-        current.setUnidadacademica(unidad);
+        current.setUnidadresponsable(unidad);
         current.setRol(rol);
         usuarioDao.newUser(current);
     }
 
     public String editItem() {
         UsuarioDao usuarioDao = new UsuarioDaoImpl();
-        Unidadacademica unidad = new Unidadacademica();
+        Unidadresponsable unidad = new Unidadresponsable();
         Rol rol = new Rol();
         unidad.setId(Integer.valueOf(selectedUnidad));
         rol.setId(Integer.valueOf(selectedRol));
-        current.setUnidadacademica(unidad);
+        current.setUnidadresponsable(unidad);
         current.setRol(rol);
         usuarioDao.updateUser(current);
         JsfUtil.addSuccessMessage(ResourceBundle.getBundle("Bundle").getString("Usuarios.update"));
@@ -88,6 +97,7 @@ public class UserController implements Serializable {
     public void deleteItem() {
         UsuarioDao usuarioDao = new UsuarioDaoImpl();
         usuarioDao.deleteUser(current);
+        JsfUtil.addSuccessMessage(ResourceBundle.getBundle("Bundle").getString("Usuarios.delete"));
         current = new Usuario();
     }
 

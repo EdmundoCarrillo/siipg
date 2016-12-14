@@ -11,7 +11,7 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>Faces Servlet</servlet-name>
-        <url-pattern>/faces/*</url-pattern>
+        <url-pattern>*.xhtml</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
@@ -19,11 +19,11 @@
         </session-timeout>
     </session-config>
     <welcome-file-list>
-        <welcome-file>faces/index.xhtml</welcome-file>
+        <welcome-file>login.xhtml</welcome-file>
     </welcome-file-list>
        <!-- Definicion del Tema -->
     <context-param>  
         <param-name>primefaces.THEME</param-name>  
-        <param-value>bootstrap</param-value>  
+        <param-value>omega</param-value>  
     </context-param> 
 </web-app>

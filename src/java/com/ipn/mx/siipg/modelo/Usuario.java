@@ -1,5 +1,5 @@
 package com.ipn.mx.siipg.modelo;
-// Generated 27/11/2016 04:37:03 AM by Hibernate Tools 4.3.1
+// Generated 12/12/2016 01:27:14 AM by Hibernate Tools 4.3.1
 
 
 
@@ -9,14 +9,11 @@ package com.ipn.mx.siipg.modelo;
 public class Usuario  implements java.io.Serializable {
 
 
-     private Integer id;
+     private UsuarioId id;
      private Rol rol;
-     private Unidadacademica unidadacademica;
-     private String rfc;
+     private Unidadresponsable unidadresponsable;
      private String password;
      private int status;
-     private String createdAt;
-     private String updatedAt;
      private String nombre;
      private String apellidoPaterno;
      private String apellidoMaterno;
@@ -28,22 +25,24 @@ public class Usuario  implements java.io.Serializable {
     }
 
 	
-    public Usuario(Rol rol, Unidadacademica unidadacademica, String rfc, String password, int status, String numeroEmpleado) {
+    public Usuario(UsuarioId id, Rol rol, Unidadresponsable unidadresponsable, String password, int status, String nombre, String apellidoPaterno, String apellidoMaterno, String email, String telefonos) {
+        this.id = id;
         this.rol = rol;
-        this.unidadacademica = unidadacademica;
-        this.rfc = rfc;
+        this.unidadresponsable = unidadresponsable;
         this.password = password;
         this.status = status;
-        this.numeroEmpleado = numeroEmpleado;
+        this.nombre = nombre;
+        this.apellidoPaterno = apellidoPaterno;
+        this.apellidoMaterno = apellidoMaterno;
+        this.email = email;
+        this.telefonos = telefonos;
     }
-    public Usuario(Rol rol, Unidadacademica unidadacademica, String rfc, String password, int status, String createdAt, String updatedAt, String nombre, String apellidoPaterno, String apellidoMaterno, String numeroEmpleado, String email, String telefonos) {
+    public Usuario(UsuarioId id, Rol rol, Unidadresponsable unidadresponsable, String password, int status, String nombre, String apellidoPaterno, String apellidoMaterno, String numeroEmpleado, String email, String telefonos) {
+       this.id = id;
        this.rol = rol;
-       this.unidadacademica = unidadacademica;
-       this.rfc = rfc;
+       this.unidadresponsable = unidadresponsable;
        this.password = password;
        this.status = status;
-       this.createdAt = createdAt;
-       this.updatedAt = updatedAt;
        this.nombre = nombre;
        this.apellidoPaterno = apellidoPaterno;
        this.apellidoMaterno = apellidoMaterno;
@@ -52,11 +51,11 @@ public class Usuario  implements java.io.Serializable {
        this.telefonos = telefonos;
     }
    
-    public Integer getId() {
+    public UsuarioId getId() {
         return this.id;
     }
     
-    public void setId(Integer id) {
+    public void setId(UsuarioId id) {
         this.id = id;
     }
     public Rol getRol() {
@@ -66,19 +65,12 @@ public class Usuario  implements java.io.Serializable {
     public void setRol(Rol rol) {
         this.rol = rol;
     }
-    public Unidadacademica getUnidadacademica() {
-        return this.unidadacademica;
+    public Unidadresponsable getUnidadresponsable() {
+        return this.unidadresponsable;
     }
     
-    public void setUnidadacademica(Unidadacademica unidadacademica) {
-        this.unidadacademica = unidadacademica;
-    }
-    public String getRfc() {
-        return this.rfc;
-    }
-    
-    public void setRfc(String rfc) {
-        this.rfc = rfc;
+    public void setUnidadresponsable(Unidadresponsable unidadresponsable) {
+        this.unidadresponsable = unidadresponsable;
     }
     public String getPassword() {
         return this.password;
@@ -93,20 +85,6 @@ public class Usuario  implements java.io.Serializable {
     
     public void setStatus(int status) {
         this.status = status;
-    }
-    public String getCreatedAt() {
-        return this.createdAt;
-    }
-    
-    public void setCreatedAt(String createdAt) {
-        this.createdAt = createdAt;
-    }
-    public String getUpdatedAt() {
-        return this.updatedAt;
-    }
-    
-    public void setUpdatedAt(String updatedAt) {
-        this.updatedAt = updatedAt;
     }
     public String getNombre() {
         return this.nombre;

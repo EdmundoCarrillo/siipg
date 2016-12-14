@@ -33,7 +33,7 @@
                                     <p:inputText value="#{userController.current.apellidoMaterno}" required="true"/>
 
                                     <h:outputText value="RFC/Homoclave: "  />
-                                    <p:inputText value="#{userController.current.rfc}" required="true"/>
+                                    <p:inputText value="#{userController.current.apellidoMaterno}" required="true"/>
 
                                     <h:outputText value="Email:"  />
                                     <p:inputText value="#{userController.current.email}" required="true"/>
@@ -48,7 +48,7 @@
                                     <h:outputText value="Rol:"  />
                                     <p:selectOneMenu value="#{userController.selectedRol}" style="width: 150px;" >
                                         <f:selectItems value="#{rolController.items}" 
-                                                       var="rol" itemLabel="#{rol.nombre}" itemValue="#{rol.id}" />
+                                                       var="rol" itemLabel="#{rol.id}" itemValue="#{rol.id}" />
                                     </p:selectOneMenu>
 
 

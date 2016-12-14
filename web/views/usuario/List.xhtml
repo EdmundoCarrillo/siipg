@@ -33,9 +33,9 @@
                                     <h:commandLink >
                                         <h:graphicImage library="images" name="pdf.png" />
                                     </h:commandLink>&nbsp; &nbsp; 
-                                    <h:commandLink action="#{userController.prepareCreate()}">
+                                    <p:commandLink actionListener="#{userController.prepareCreate()}" type="button" oncomplete="PF('dlgCreate').show();">
                                         <h:graphicImage library="images" name="add.png" />
-                                    </h:commandLink>
+                                    </p:commandLink>
                                 </h:form>
                             </div>                            
                         </div>
@@ -55,13 +55,13 @@
                                     <f:facet name="header">
                                         <h:outputText value="RFC"/>
                                     </f:facet>
-                                    <h:outputText value="#{user.rfc}"/>
+                                    <h:outputText value="#{user.id.rfc}"/>
                                 </p:column>
                                 <p:column>
                                     <f:facet name="header">
                                         <h:outputText value="Privilegio"/>
                                     </f:facet>
-                                    <h:outputText value="#{user.rol.nombre}"/>
+                                    <h:outputText value="#{user.rol.rol}"/>
                                 </p:column>
 
                                 <p:column>
@@ -88,7 +88,9 @@
                                         <h:graphicImage library="images" name="preview.png" />
                                         <f:setPropertyActionListener target="#{userController.current}" value="#{user}"/>
                                     </p:commandLink>
-                                </p:column> 
+                                </p:column>
+
+
 
                             </p:dataTable>
 
@@ -99,29 +101,7 @@
                     <div class="ui-g-1"></div>
 
                 </div>
-                <!-- Dialogo para confirmar la acción de eliminar un registro. -->
-                <h:form>
-                    <p:dialog id="dlg2" header="Confirmar Acción" widgetVar="dlgEliminar" modal="true" 
-                              closeOnEscape="true"
-                              resizable="false" 
-                              showEffect="explode"
-                              hideEffect="explode">
-                        <h:outputText value="Desea eliminar este registro?  "/>
-                        <br></br>
-                        <br></br>
-                        <center>
-                            <p:commandButton value="Si" 
-                                             actionListener="#{userController.deleteItem()}"
-                                             update="showUsersForm:usersTable"
-                                             oncomplete="PF('dlgEliminar').hide();"
-                                             />
-                            &nbsp; 
-                            <p:commandButton value="No"
-                                             onclick="PF('dlgEliminar').hide();"/>
-                        </center>
-                    </p:dialog>
-                </h:form>
-                <!-- Dialogo para mostrar el resumen detallado de un usuario. -->
+
                 <h:form id="detalleForm">
                     <p:dialog id="dlgDetalle" header="Información General" widgetVar="dlgDetalles" modal="true" 
                               closeOnEscape="true"

@@ -1,0 +1,28 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+
+    </h:head>
+    <h:body>
+        <h:form>
+            <p:confirmDialog global="true">
+                <center>
+                    <p:commandButton value="Si" type="button" styleClass="ui-confirmdialog-yes btn-success" icon="fa fa-check"/>  
+                    <p:commandButton value="No" type="button" class ="btn btn-danger" styleClass="ui-confirmdialog-no btn-danger" icon="fa fa-remove"/>       
+                </center>
+            </p:confirmDialog>
+
+            <p:dialog header="Por favor espere" widgetVar="loading" modal="true"  resizable="false" closable="false" height="50" >
+                Loading
+                <center>
+                    <p:graphicImage value="/resources/images/ajaxloadingbar.gif"/>
+                </center>
+            </p:dialog>
+
+        </h:form>
+    </h:body>
+</html>
+
