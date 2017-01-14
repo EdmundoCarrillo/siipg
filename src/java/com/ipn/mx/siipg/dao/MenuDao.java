@@ -6,6 +6,7 @@
 package com.ipn.mx.siipg.dao;
 
 import com.ipn.mx.siipg.modelo.Menu;
+import com.ipn.mx.siipg.modelo.Usuario;
 import java.util.List;
 
 /**
@@ -21,4 +22,6 @@ public interface MenuDao {
     public void updateMenu(Menu menu);
 
     public void deleteMenu(Menu menu);
+    
+    public List<Menu> loadMenuByRol(Usuario usuario);
 }

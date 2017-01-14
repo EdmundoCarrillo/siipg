@@ -7,53 +7,58 @@
 
     </h:head>
     <h:body>
-        <h:form id="detalleForm">
+        <h:form id="viewForm">
 
-            <p:dialog  widgetVar="viewUser" modal="true"  
-                       closeOnEscape="true"
-                       resizable="false" 
-                       showEffect="explode"
-                       hideEffect="explode">
-                <h:panelGrid columns="2" cellpadding="5">
+            <p:dialog id="viewUserDlg" widgetVar="viewUser" modal="true"  
+                      closeOnEscape="true"
+                      resizable="false" 
+                      showEffect="explode"
+                      hideEffect="explode"
+                      header="Acerca del usuario">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2">
 
-                    <h:outputText value="Nombre:" style=" color: red; " />
-                    <h:outputText value="#{userController.current.nombre}"  />                                    
+                        <h:outputText value="Nombre:" style=" color: #0033ff; " />
+                        <h:outputText value="#{userController.current.nombre}"  />                                    
 
-                    <h:outputText value="Apellido Paterno:"   style="color: red;" />
-                    <h:outputText value="#{userController.current.apellidoPaterno}"  /> 
+                        <h:outputText value="Apellido Paterno:"   style="color: #0033ff;" />
+                        <h:outputText value="#{userController.current.apellidoPaterno}"  /> 
 
-                    <h:outputText value="Apellido Materno:"  style=" color: red;" />
-                    <h:outputText value="#{userController.current.apellidoMaterno}"/>
+                        <h:outputText value="Apellido Materno:"  style=" color: #0033ff;" />
+                        <h:outputText value="#{userController.current.apellidoMaterno}"/>
 
-                    <h:outputText value="RFC/Homoclave: "  style=" color: red;" />
-                    <h:outputText value="#{userController.current.rfc}"  />
+                        <h:outputText value="RFC/Homoclave: "  style=" color: #0033ff;" />
+                        <h:outputText value="#{userController.current.id.rfc}"  />
 
-                    <h:outputText value="Email:"  style="color: red;" />
-                    <h:outputText value="#{userController.current.email}" />
+                        <h:outputText value="Email:"  style="color: #0033ff;" />
+                        <h:outputText value="#{userController.current.email}" />
 
-                    <h:outputText value="Telefonos:"  style=" color: red;" />
-                    <h:outputText  value="#{userController.current.telefonos}"  />             
+                        <h:outputText value="Telefonos:"  style=" color: #0033ff;" />
+                        <h:outputText  value="#{userController.current.telefonos}"  />             
 
-                    <h:outputText value="No. Empleado:"  style=" color: red;" />
-                    <h:outputText value="#{userController.current.numeroEmpleado}"   />
-
-
-                    <h:outputText value="Rol:"  style=" color: red;"  />
-                    <h:outputText value="#{userController.selectedRol}"  />
-
-                    <h:outputText value="Estatus:"  style=" color: red;" />
-                    <h:outputText value="#{userController.current.status}"   />
+                        <h:outputText value="No. Empleado:"  style=" color: #0033ff;" />
+                        <h:outputText value="#{userController.current.numeroEmpleado}"   />
 
 
-                    <h:outputText value="Area"  style=" color: red;" />
-                    <h:outputText value="Area Central"   />
+                        <h:outputText value="Rol:"  style=" color:#0033ff;"  />
+                        <h:outputText value="#{userController.current.rol.rol}"  />
 
-                    <h:outputText value="Unidad Academica:"  style="color: red;" />
-                    <h:outputText value="#{userController.selectedUnidad}"   />
+                        <h:outputText value="Estatus:"  style=" color: #0033ff;" />
+                        <h:outputText value="#{userController.current.status}"   />
 
-                </h:panelGrid>
+
+                        <h:outputText value="Area"  style=" color: #0033ff;" />
+                        <h:outputText value="Area Central"   />
+
+                        <h:outputText value="Unidad Academica:"  style="color: #0033ff;" />
+                        <h:outputText value="#{userController.current.unidadresponsable.nombre}"   />
+
+                    </p:panelGrid>
+                    <br/>
+                    <p:commandButton value="Salir" type="button" onclick="PF('viewUser').hide();" /> 
+    
+                </h:panelGroup>
             </p:dialog>
-
         </h:form>
     </h:body>
 </html>

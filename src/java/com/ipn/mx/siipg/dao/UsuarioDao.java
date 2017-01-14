@@ -21,4 +21,6 @@ public interface UsuarioDao {
     public void updateUser(Usuario user);
 
     public void deleteUser(Usuario user);
+    //Verifica que el usuario que solicite acceso al sistema se encuentre registrado.
+    public Usuario checkUser(Usuario user);
 }

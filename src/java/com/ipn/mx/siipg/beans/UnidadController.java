@@ -13,6 +13,11 @@ import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import com.ipn.mx.siipg.dao.UnidadResponsableDao;
 
+/**
+ *
+ * @author Edmundo Carrillo
+ */
+
 @Named
 @SessionScoped
 public class UnidadController implements Serializable {

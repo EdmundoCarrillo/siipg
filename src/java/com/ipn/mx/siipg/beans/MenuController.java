@@ -8,6 +8,7 @@ package com.ipn.mx.siipg.beans;
 import com.ipn.mx.siipg.dao.MenuDao;
 import com.ipn.mx.siipg.impl.MenuDaoImpl;
 import com.ipn.mx.siipg.modelo.Menu;
+import com.ipn.mx.siipg.modelo.Usuario;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -44,7 +45,8 @@ public class MenuController implements Serializable {
 
     public List<Menu> getMenuList() {
         MenuDao menuDao = new MenuDaoImpl();
-        return menuList = menuDao.loadMenus();
+        Usuario usuario = (Usuario)FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("usuario");
+        return menuList = menuDao.loadMenuByRol(usuario);
     }
 
     public void setPageName(String pageName) {

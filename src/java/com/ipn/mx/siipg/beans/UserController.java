@@ -81,7 +81,7 @@ public class UserController implements Serializable {
         usuarioDao.newUser(current);
     }
 
-    public String editItem() {
+    public void editItem() {
         UsuarioDao usuarioDao = new UsuarioDaoImpl();
         Unidadresponsable unidad = new Unidadresponsable();
         Rol rol = new Rol();
@@ -91,7 +91,6 @@ public class UserController implements Serializable {
         current.setRol(rol);
         usuarioDao.updateUser(current);
         JsfUtil.addSuccessMessage(ResourceBundle.getBundle("Bundle").getString("Usuarios.update"));
-        return "View";
     }
 
     public void deleteItem() {

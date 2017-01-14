@@ -5,26 +5,23 @@
  */
 package com.ipn.mx.siipg.impl;
 
-import com.ipn.mx.siipg.dao.UsuarioDao;
-import com.ipn.mx.siipg.modelo.Usuario;
-import com.ipn.mx.siipg.modelo.UsuarioId;
+import com.ipn.mx.siipg.dao.VariableDao;
+import com.ipn.mx.siipg.modelo.Variable;
 import java.util.List;
 import org.hibernate.HibernateException;
-import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
-public class UsuarioDaoImpl implements UsuarioDao {
+public class VariableDaoImpl implements VariableDao {
 
     @Override
-    public List<Usuario> loadUsers() {
-
+    public List<Variable> loadVars() {
         Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction tx = session.getTransaction();
-        List usuarioList = null;
+        List varList = null;
         try {
             tx.begin();
-            usuarioList = session.createQuery("from Usuario").list();
+            varList = session.createQuery("from Variable").list();
             tx.commit();
         } catch (HibernateException ex) {
             if (tx != null) {
@@ -34,35 +31,17 @@ public class UsuarioDaoImpl implements UsuarioDao {
         } finally {
             session.close();
         }
-        return usuarioList;
+        return varList;
     }
 
     @Override
-    public void newUser(Usuario user) {
+    public void newVar(Variable var) {
 
         Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction tx = session.getTransaction();
         try {
             tx.begin();
-            session.save(user);
-            tx.commit();
-        } catch (HibernateException ex) {
-            if (tx != null) {
-                tx.rollback();
-            }
-            System.out.println(ex.toString());
-        } finally {
-            session.close();
-        }
-    }
-
-    @Override
-    public void updateUser(Usuario user) {
-        Session session = HibernateUtil.getSessionFactory().openSession();
-        Transaction tx = session.getTransaction();
-        try {
-            tx.begin();
-            session.update(user);
+            session.save(var);
             tx.commit();
         } catch (HibernateException ex) {
             if (tx != null) {
@@ -75,12 +54,12 @@ public class UsuarioDaoImpl implements UsuarioDao {
     }
 
     @Override
-    public void deleteUser(Usuario user) {
+    public void updateVar(Variable var) {
         Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction tx = session.getTransaction();
         try {
             tx.begin();
-            session.delete(user);
+            session.update(var);
             tx.commit();
         } catch (HibernateException ex) {
             if (tx != null) {
@@ -93,31 +72,21 @@ public class UsuarioDaoImpl implements UsuarioDao {
     }
 
     @Override
-    public Usuario checkUser(Usuario user) {
-        Usuario us = null;
+    public void deleteVar(Variable var) {
         Session session = HibernateUtil.getSessionFactory().openSession();
-        String stringQuery = "From Usuario u where u.password='" + user.getPassword() + "' and u.id.rfc='"+user.getId().getRfc()+"'";
+        Transaction tx = session.getTransaction();
         try {
-
-            Query query = session.createQuery(stringQuery);
-            if (!query.list().isEmpty()) {
-                us = (Usuario) query.list().get(0);
-            }
+            tx.begin();
+            session.delete(var);
+            tx.commit();
         } catch (HibernateException ex) {
-
+            if (tx != null) {
+                tx.rollback();
+            }
             System.out.println(ex.toString());
         } finally {
             session.close();
         }
-        return us;
     }
 
-//    public static void main(String[] args) {
-//        Usuario usu = new Usuario();
-//        usu.setId(new UsuarioId(1, "CABE9211294D6"));
-//        usu.setPassword("obiwan");
-//        UsuarioDao usuarioDao = new UsuarioDaoImpl();
-//        Usuario user = usuarioDao.checkUser(usu);
-//        System.out.println(user.getNombre());
-//    }
 }
