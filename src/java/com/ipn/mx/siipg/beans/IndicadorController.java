@@ -39,8 +39,8 @@ public class IndicadorController implements Serializable {
         this.current = current;
     }
 
-    public void pruebaSubTable() {
-        System.out.println(current.getId());
+    public void pruebaSubTable(Indicador indicador) {
+        System.out.println(indicador.getId());
     }
 
 }

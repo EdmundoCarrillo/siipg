@@ -28,12 +28,9 @@
                          {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                          currentPageReportTemplate="({currentPage} de {totalPages})" 
                          paginatorPosition="top"
-                         selection="#{indicadorController.current}"
-                         rowKey="#{indicador.id}">
-                
-                <p:ajax event="rowSelect"   update="verPdfButton createButton viewButton editButton deleteButton"/>
-                <p:ajax event="rowUnselect" update="verPdfButton createButton viewButton editButton deleteButton"/>
-                
+                         >
+
+
                 <f:facet name="header">
                     Indicadores
                 </f:facet>        
@@ -42,26 +39,29 @@
                     <f:facet name="header">
                         <h:outputText value="#{ejeHasIndicador.nombreEje}" />
                     </f:facet>
-                    <p:column selectionMode="single" />
+
                     <p:column>
                         <h:outputText value="#{indicador.nombre}" />
                     </p:column>
 
+                    <p:column style="width:32px;text-align: center">
+                        <p:commandButton  icon="ui-icon-pencil" oncomplete="PF('viewIndicador').show();"
+                                          onstart="PF('loading').show();" onsuccess="PF('loading').hide();">
+                            <f:setPropertyActionListener value="#{indicador}" target="#{indicadorController.current}" />
+                        </p:commandButton>
+
+                        <p:button href="#{indicador.rutaPdf}" icon="ui-icon-search" target="_blank" />
+                    </p:column>
+
+
                 </p:subTable>
 
-                <f:facet name="footer">
-                    <div class="row">
-                        <div class="col-lg-4 ">
-                            <div class="pull-left">
-                                <p:commandButton id="verPdfButton" icon="ui-icon-plus"   value="ver detalle" actionListener="#{indicadorController.pruebaSubTable()}" onstart="PF('loading').show();" onsuccess="PF('loading').hide();"  />
 
-                            </div>
-                        </div>
-                    </div>
-                </f:facet>
             </p:dataTable>
-        </h:form>
 
+        </h:form>
+        <ui:include src="/confirmation.xhtml"/>
+        <ui:include src="View.xhtml" />  
     </h:body>
 </html>
 
