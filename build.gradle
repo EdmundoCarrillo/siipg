@@ -1,0 +1,55 @@
+buildscript {
+    repositories {
+        jcenter()
+    }
+
+    dependencies {
+        classpath 'com.bmuschko:gradle-tomcat-plugin:2.2.5'
+    }
+}
+//
+apply plugin: 'java'
+apply plugin: 'war'
+apply plugin: 'com.bmuschko.tomcat'
+// War file name
+war.baseName = 'SIIPG'
+// Tomcat configuration
+def tomcatVersion = '8.0.36'
+tomcatRun.contextPath = '/'
+tomcatRunWar.contextPath = '/'
+
+repositories {
+    jcenter()
+    mavenCentral()
+    maven {
+        url "http://repository.primefaces.org"
+    }
+    maven {
+        url "https://maven.java.net/content/repositories/releases/"
+    }
+}
+
+
+dependencies {
+    tomcat "org.apache.tomcat.embed:tomcat-embed-core:${tomcatVersion}",
+            "org.apache.tomcat.embed:tomcat-embed-logging-juli:${tomcatVersion}" ,
+            "org.apache.tomcat.embed:tomcat-embed-jasper:${tomcatVersion}"
+
+//    compile group: 'javax.faces', name: 'javax.faces-api', version: '2.2'
+    compile group: 'com.sun.faces', name: 'jsf-api', version: '2.2.6'
+    compile group: 'com.sun.faces', name: 'jsf-impl', version: '2.2.6'
+
+    compile group: 'org.apache.myfaces.core', name: 'myfaces-api', version: '2.2.4'
+    compile 'org.primefaces:primefaces:6.0'
+    compile 'org.primefaces.themes:all-themes:1.0.10'
+    compile group: 'org.hibernate', name: 'hibernate-core', version: '4.3.11.Final'
+    compile 'mysql:mysql-connector-java:5.1.40'
+
+    compile "org.glassfish.web:el-impl:2.2"
+    compile "javax.servlet:jstl:1.2"
+    compile group: 'javax.servlet', name: 'javax.servlet-api', version: '3.1.0'
+    compile "javax.servlet.jsp:jsp-api:2.1"
+//    providedCompile 'javax:javaee-api:7.0'
+    providedCompile group: 'javax', name: 'javaee-api', version: '7.0'
+//    compile group: 'javax.enterprise', name: 'cdi-api', version: '1.2'
+}
