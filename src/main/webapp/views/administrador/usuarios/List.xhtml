@@ -1,0 +1,134 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:head>
+        <link href="resources/css/bootstrap.css" rel="stylesheet" type="text/css"/>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+        <link href="resources/css/siipg.css" rel="stylesheet" type="text/css"/>
+        <title>SIIPG</title>
+    </h:head>
+
+    <style>
+        .ui-growl {   
+            position:fixed;
+            top: 12%;
+        }
+    </style>
+
+    <h:body style="background-color:whitesmoke;">
+
+        <h:form id="UsersListForm">
+            <p:dataTable id="usersTable" value="#{userController.items}" var="user" 
+                         style="text-align: center; border-collapse: collapse; margin-bottom: 20px;"
+                         paginator="true" rows="20"  
+                         paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                         rowsPerPageTemplate="10,20,30" 
+                         currentPageReportTemplate="({currentPage} de {totalPages})" 
+                         paginatorPosition="top"
+                         selectionMode="single" selection="#{userController.current}"
+                         rowKey="#{user.id}">
+
+                <p:ajax event="rowSelect"   update="createButton viewButton editButton deleteButton"/>
+                <p:ajax event="rowUnselect" update="createButton viewButton editButton deleteButton"/>
+
+                <p:column>
+                    <f:facet name="header">
+                        <h:outputText value="Nombre"/>
+                    </f:facet>
+                    <h:outputText value="#{user.nombre } #{user.apellidoPaterno } #{user.apellidoMaterno }"/>
+                </p:column>
+
+                <p:column>
+                    <f:facet name="header">
+                        <h:outputText value="RFC"/>
+                    </f:facet>
+                    <h:outputText value="#{user.id.rfc}"/>
+                </p:column>
+                <p:column>
+                    <f:facet name="header">
+                        <h:outputText value="Privilegio"/>
+                    </f:facet>
+                    <h:outputText value="#{user.rol.rol}"/>
+                </p:column>
+
+                <p:column>
+                    <f:facet name="header">
+                        <h:outputText value="Estatus"/>
+                    </f:facet>
+                    <h:outputLabel value="#{user.status==0? 'No vigente' : 'Vigente'}"/>
+                </p:column>
+
+                <f:facet name="footer">
+                    <div class="row">
+                        <div class="col-lg-4 ">
+                            <div class="pull-left">
+                                <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{msg.create}" oncomplete="PF('createUserWI').show();" onstart="PF('loading').show();" onsuccess="PF('loading').hide();"  />
+                                
+                                <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{msg.view}" oncomplete="PF('viewUser').show();" update=":viewForm" disabled="#{empty userController.current}" 
+                                                 onstart="PF('loading').show();" onsuccess="PF('loading').hide();" />
+                                
+                                <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{msg.edit}" oncomplete="PF('editUser').show();" update=":editForm" disabled="#{empty userController.current}" 
+                                                 onstart="PF('loading').show();" onsuccess="PF('loading').hide();" />
+                               
+                                <p:commandButton id="deleteButton"  icon="ui-icon-trash"  value="#{msg.delete}" actionListener="#{userController.deleteItem()}" update="growl,usersTable" 
+                                                 disabled="#{empty userController.current}" onstart="PF('loading').show();" onsuccess="PF('loading').hide();">
+                                    <p:confirm header="Información General" message="Desea eliminar este registro? " icon="fa fa-warning"/>
+                                </p:commandButton>
+
+
+
+
+
+                            </div>
+                        </div>
+                        <div class="col-lg-offset-6 col-lg-2">
+                            <div class="pull-right">
+                                <h:commandLink>
+                                    <p:graphicImage library="images" name="excel.png" width="24"/>
+                                    <p:dataExporter type="xls" target="tbl" fileName="cars" />
+                                </h:commandLink>
+
+                                <h:commandLink>
+                                    <p:graphicImage library="images" name="pdf_1.png" width="24"/>
+                                    <p:dataExporter type="pdf" target="tbl" fileName="cars"/>
+                                </h:commandLink>
+
+                                <h:commandLink>
+                                    <p:graphicImage library="images" name="csv.png" width="24"/>
+                                    <p:dataExporter type="csv" target="tbl" fileName="cars" />
+                                </h:commandLink>
+
+                                <h:commandLink>
+                                    <p:graphicImage library="images" name="xml.png" width="24"/>
+                                    <p:dataExporter type="xml" target="tbl" fileName="cars" />
+                                </h:commandLink>
+                            </div>
+                        </div>
+                    </div>
+                </f:facet>
+
+            </p:dataTable>
+
+        </h:form>
+
+        <h:form>
+            <h:panelGrid columns="1" cellpadding="5">
+                <p:commandButton value="Basic" type="button" onclick="PF('dlg1').show();" />
+                <p:commandButton value="Modal" type="button" onclick="PF('dlg2').show();" />
+                <p:commandButton value="Effects" type="button" onclick="PF('dlg3').show();" /> 
+                <p:commandButton value="Effects" type="button" onclick="PF('loading').show();" /> 
+            </h:panelGrid>
+
+         
+        </h:form>
+        <ui:include src="/confirmation.xhtml"/>
+        <ui:include src="View.xhtml" />       
+        <ui:include src="Edit.xhtml" />       
+        <ui:include src="Create.xhtml" />       
+    </h:body>
+</html>
+

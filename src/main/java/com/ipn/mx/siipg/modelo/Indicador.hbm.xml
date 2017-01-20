@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="com.ipn.mx.siipg.modelo.Indicador" table="indicador" catalog="entidadgenerov1" optimistic-lock="version">
+        
+        <id name="id" type="java.lang.Integer">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+        
+        <many-to-one name="ejetematico" class="com.ipn.mx.siipg.modelo.Ejetematico" fetch="select">
+            <column name="ejeTematico_id" not-null="true" />
+        </many-to-one>
+        
+        <property name="nombre" type="string">
+            <column name="nombre" length="150" not-null="true" />
+        </property>
+     
+        <property name="rutaPdf" type="string">
+            <column name="rutaPdf" length="100" not-null="true" />
+        </property>
+  
+        <property name="resultado" type="java.lang.Float">
+            <column name="resultado" precision="12" scale="0" />
+        </property>
+     
+    </class>
+</hibernate-mapping>

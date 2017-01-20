@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 12/12/2016 01:27:18 AM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="com.ipn.mx.siipg.modelo.Rol" table="rol" catalog="entidadgenerov1" optimistic-lock="version">
+        <id name="id" type="java.lang.Integer">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+        <property name="rol" type="string">
+            <column name="rol" length="45" not-null="true" />
+        </property>
+        <set name="usuarios" table="usuario" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="rol_id" not-null="true" />
+            </key>
+            <one-to-many class="com.ipn.mx.siipg.modelo.Usuario" />
+        </set>
+        <set name="menus" table="menu" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="rol_id" not-null="true" />
+            </key>
+            <one-to-many class="com.ipn.mx.siipg.modelo.Menu" />
+        </set>
+    </class>
+</hibernate-mapping>

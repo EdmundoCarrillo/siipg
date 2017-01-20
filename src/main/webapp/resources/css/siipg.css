@@ -1,0 +1,41 @@
+/*
+This code was developed by Edmundo Carrillo on java technologies.
+Contact: edmundodev@gmail.com
+Hope you'll find it useful.
+*/
+/* 
+    Created on : 7/12/2016, 01:45:05 PM
+    Author     : Edmundo Carrillo
+*/
+
+body, html { 
+    width: 100%;
+    height: 100%;
+    font-family: Verdana, "Verdana CE",  Arial, "Arial CE", "Lucida Grande CE", lucida, "Helvetica CE", sans-serif;
+
+
+}
+#UPTitulo{
+    color:#74003d;
+    font-size: 150%;
+    font-weight: bold;
+}
+
+#UPFooter{
+    bottom:0%;
+    background-color: black;
+    color: white;
+    font-size: 90%; 
+}
+
+#UPTitulo2{
+    color:black;
+    font-size: 150%;
+    font-weight: bold;
+    
+}
+
+#SIIPGLogo {
+    
+width: 70%;
+}

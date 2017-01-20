@@ -1,0 +1,46 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 12/12/2016 01:27:18 AM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="com.ipn.mx.siipg.modelo.Usuario" table="usuario" catalog="entidadgenerov1" optimistic-lock="version">
+        <composite-id name="id" class="com.ipn.mx.siipg.modelo.UsuarioId">
+            <key-property name="id" type="int">
+                <column name="id" />
+            </key-property>
+            <key-property name="rfc" type="string">
+                <column name="rfc" length="13" />
+            </key-property>
+        </composite-id>
+        <many-to-one name="rol" class="com.ipn.mx.siipg.modelo.Rol" fetch="select">
+            <column name="rol_id" not-null="true" />
+        </many-to-one>
+        <many-to-one name="unidadresponsable" class="com.ipn.mx.siipg.modelo.Unidadresponsable" fetch="select">
+            <column name="unidadResponsable_id" not-null="true" />
+        </many-to-one>
+        <property name="password" type="string">
+            <column name="password" length="20" not-null="true" />
+        </property>
+        <property name="status" type="int">
+            <column name="status" not-null="true" />
+        </property>
+        <property name="nombre" type="string">
+            <column name="nombre" length="45" not-null="true" />
+        </property>
+        <property name="apellidoPaterno" type="string">
+            <column name="apellidoPaterno" length="45" not-null="true" />
+        </property>
+        <property name="apellidoMaterno" type="string">
+            <column name="apellidoMaterno" length="45" not-null="true" />
+        </property>
+        <property name="numeroEmpleado" type="string">
+            <column name="numeroEmpleado" length="45" />
+        </property>
+        <property name="email" type="string">
+            <column name="email" length="100" not-null="true" />
+        </property>
+        <property name="telefonos" type="string">
+            <column name="telefonos" length="200" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

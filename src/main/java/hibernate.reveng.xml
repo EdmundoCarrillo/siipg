@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-reverse-engineering PUBLIC "-//Hibernate/Hibernate Reverse Engineering DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-reverse-engineering-3.0.dtd">
+<hibernate-reverse-engineering>
+  <schema-selection match-catalog="entidadgenerov1"/>
+  <table-filter match-name="variable"/>
+  <table-filter match-name="usuario"/>
+  <table-filter match-name="indicador_tiene_variable"/>
+  <table-filter match-name="indicador"/>
+  <table-filter match-name="unidadresponsable"/>
+  <table-filter match-name="variablecheck"/>
+  <table-filter match-name="ejetematico"/>
+  <table-filter match-name="areapolitecnica"/>
+  <table-filter match-name="entidadfederativa"/>
+  <table-filter match-name="rol"/>
+  <table-filter match-name="opcionesmenu"/>
+  <table-filter match-name="menu"/>
+</hibernate-reverse-engineering>

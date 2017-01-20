@@ -1,0 +1,113 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:head>
+        <link href="resources/css/bootstrap.css" rel="stylesheet" type="text/css"/>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+        <link href="resources/css/siipg.css" rel="stylesheet" type="text/css"/>
+        <title>SIIPG</title>
+    </h:head>
+
+    <style>
+        .ui-growl {   
+            position:fixed;
+            top: 12%;
+        }
+    </style>
+
+    <h:body style="background-color:whitesmoke;">
+
+        <h:form id="unidadListForm">
+            <p:dataTable id="unidadTable" value="#{unidadController.items}" var="unidad" 
+                         style="text-align: center; border-collapse: collapse; margin-bottom: 20px;"
+                         paginator="true" rows="20"  
+                         paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                         rowsPerPageTemplate="10,20" 
+                         currentPageReportTemplate="({currentPage} de {totalPages})" 
+                         paginatorPosition="top"
+                         selectionMode="single" selection="#{unidadController.current}"
+                         rowKey="#{unidad.id}">
+
+                <p:ajax event="rowSelect"   update="viewButtonVar createButtonVar"/>
+                <p:ajax event="rowUnselect" update=" viewButtonVar createButtonVar"/>
+
+                <p:column>
+                    <f:facet name="header">
+                        <h:outputText value="Variable"/>
+                    </f:facet>
+                    <h:outputText value="#{unidad.nombre}"/>
+                </p:column>
+
+                <p:column>
+                    <f:facet name="header">
+                        <h:outputText value="Unidad"/>
+                    </f:facet>
+                    <h:outputText value="#{var.unidadresponsable.nombre}"/>
+                </p:column>
+                
+                <p:column>
+                    <f:facet name="header">
+                        <h:outputText value="Estatus"/>
+                    </f:facet>
+                    <h:outputLabel value="#{var.status==0? 'No vigente' : 'Vigente'}"/>
+                </p:column>
+
+
+                <f:facet name="footer">
+                    <div class="row">
+                        <div class="col-lg-4 ">
+                            <div class="pull-left">
+
+                                <p:commandButton id="createButtonVar" icon="ui-icon-plus"   value="#{msg.create}" />
+                                <p:commandButton id="viewButtonVar"   icon="ui-icon-search" value="#{msg.view}" oncomplete="PF('viewVar').show();" update=":viewFormVar" disabled="#{empty variableController.current}" 
+                                                 onstart="PF('loading').show();" onsuccess="PF('loading').hide();" />
+
+
+
+
+
+
+
+                            </div>
+                        </div>
+                        <div class="col-lg-offset-6 col-lg-2">
+                            <div class="pull-right">
+                                <h:commandLink>
+                                    <p:graphicImage library="images" name="excel.png" width="24"/>
+                                    <p:dataExporter type="xls" target="tbl" fileName="cars" />
+                                </h:commandLink>
+
+                                <h:commandLink>
+                                    <p:graphicImage library="images" name="pdf_1.png" width="24"/>
+                                    <p:dataExporter type="pdf" target="tbl" fileName="cars"/>
+                                </h:commandLink>
+
+                                <h:commandLink>
+                                    <p:graphicImage library="images" name="csv.png" width="24"/>
+                                    <p:dataExporter type="csv" target="tbl" fileName="cars" />
+                                </h:commandLink>
+
+                                <h:commandLink>
+                                    <p:graphicImage library="images" name="xml.png" width="24"/>
+                                    <p:dataExporter type="xml" target="tbl" fileName="cars" />
+                                </h:commandLink>
+                            </div>
+                        </div>
+                    </div>
+                </f:facet>
+
+            </p:dataTable>
+
+        </h:form>
+
+
+        <ui:include src="/confirmation.xhtml"/>
+        <ui:include src="View.xhtml" />       
+
+    </h:body>
+</html>
+
